@@ -1,0 +1,17 @@
+{
+  "name": "SunSafe Pro - Benue Kidney & Asthma Guard",
+  "short_name": "SunSafe Benue",
+  "description": "UV, Kidney stress & Asthma air monitoring for Benue State - Harmattan & heat protection",
+  "start_url": "./index.html",
+  "display": "standalone",
+  "background_color": "#FFFBF7",
+  "theme_color": "#111111",
+  "icons": [
+    {
+      "src": "https://cdn-icons-png.flaticon.com/512/869/869869.png",
+      "sizes": "512x512",
+      "type": "image/png",
+      "purpose": "any maskable"
+    }
+  ]
+}
