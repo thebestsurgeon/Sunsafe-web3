@@ -1,0 +1,104 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>SunSafe Pro — Benue Kidney & Asthma Guard</title>
+<link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;600;800&family=Space+Grotesk:wght@500;700&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="style.css">
+<link rel="manifest" href="manifest.json">
+<meta name="theme-color" content="#111111">
+<link rel="apple-touch-icon" href="https://cdn-icons-png.flaticon.com/512/869/869869.png">
+</head>
+<body>
+
+<div class="bg-blobs">
+  <div class="blob blob-orange"></div>
+  <div class="blob blob-blue"></div>
+  <div class="blob blob-emerald"></div>
+</div>
+
+<header class="topbar">
+  <div class="brand"><div class="logo">☀️</div><div><h1>SunSafe Pro</h1><p id="location">Benue State • Locating...</p></div></div>
+  <div class="live-pill"><span class="dot"></span> LIVE MONITORING</div>
+</header>
+
+<main>
+<section class="hero">
+  <div class="hero-card uv-card">
+    <span class="eyebrow">UV INDEX • BENUE</span>
+    <div class="big" id="uvVal">9.2</div>
+    <div class="risk" id="uvRisk">EXTREME RISK</div>
+    <div class="mini-bar"><div id="uvBar" style="width:92%"></div></div>
+  </div>
+  <div class="hero-grid">
+    <div class="hero-card"><span class="eyebrow">TEMPERATURE</span><div class="big" id="tempVal">36°</div><span class="sub">Feels like 41° • Very Hot</span></div>
+    <div class="hero-card"><span class="eyebrow">HUMIDITY</span><div class="big" id="humVal">28%</div><span class="sub">Dry Harmattan</span></div>
+  </div>
+</section>
+
+<nav class="tabs">
+  <button class="tab active" onclick="showTab('sun',this)">☀️ Sun</button>
+  <button class="tab" onclick="showTab('kidney',this)">🧬 Kidney</button>
+  <button class="tab" onclick="showTab('asthma',this)">🫁 Asthma</button>
+  <button class="tab" onclick="showTab('water',this)">💧 Water</button>
+</nav>
+
+<div id="tab-sun" class="tab-pane">
+  <div class="card premium">
+    <div class="card-head"><h3>Sun Exposure Tracker — Benue</h3><span class="badge">WHO Standard</span></div>
+    <div class="timer-wrap"><div id="timerRing" class="ring"></div><div class="timer-center"><div id="timerDisplay">00:00</div><p id="timerInfo">Safe limit: 12 min</p></div></div>
+    <div class="progress-line"><div id="timerBar"></div></div>
+    <div class="action-row"><button id="sunBtn" class="btn primary" onclick="toggleSun()">Start Monitoring</button><button class="btn ghost" onclick="resetTimer()">Reset</button></div>
+    <p class="hint">Benue peak danger: 11:00am - 4:00pm. Harmattan + Sun = extreme kidney stress.</p>
+  </div>
+</div>
+
+<div id="tab-kidney" class="tab-pane hidden">
+  <div class="card gradient-blue">
+    <h3>🧬 Kidney Load Intelligence — Benue Heat</h3>
+    <p class="small">Dehydration is #1 cause of kidney stones in Benue (35°C+ heat)</p>
+    <div class="score-box"><div><span>Kidney Stress Score</span><strong id="kidneyScore">72/100 Moderate</strong></div><div id="kidneyCircle" class="circle">72</div></div>
+  </div>
+  <div class="card">
+    <h4>Urine Color Diagnostic — Tap yours</h4>
+    <div class="urine-grid">
+      <button class="urine" style="background:#FFFDE7" onclick="setUrine('Clear - Overhydrated',90)"></button>
+      <button class="urine active" style="background:#FFF9C4" onclick="setUrine('Pale Yellow - Perfect',20)"></button>
+      <button class="urine" style="background:#FFEB3B" onclick="setUrine('Yellow - Drink Soon',50)"></button>
+      <button class="urine" style="background:#FBC02D" onclick="setUrine('Dark Yellow - Dehydrated!',80)"></button>
+      <button class="urine" style="background:#FF8F00" onclick="setUrine('Amber - Severe!',95)"></button>
+      <button class="urine" style="background:#5D4037" onclick="setUrine('Brown - See Doctor!',100)"></button>
+    </div>
+    <div id="urineStatus" class="status ok">Status: Pale Yellow - Perfect hydration</div>
+  </div>
+  <div class="card" id="kidneyAlerts"></div>
+  <div class="card">
+    <h4>Symptom Log — Benue</h4>
+    <div class="checks"><label><input type="checkbox" id="swelling"> Swelling feet</label><label><input type="checkbox" id="fatigue"> Fatigue</label><label><input type="checkbox" id="pain"> Low back pain</label><label><input type="checkbox" id="nausea"> Nausea</label></div>
+    <button class="btn primary w-full mt-3" onclick="checkKidney()">Analyze Kidney Risk</button>
+  </div>
+</div>
+
+<div id="tab-asthma" class="tab-pane hidden">
+  <div class="card gradient-emerald">
+    <h3>🫁 Asthma Air Guard — Harmattan Alert</h3>
+    <div class="air-grid"><div class="air-box"><span>AQI</span><strong id="aqiVal">112</strong><small id="aqiLabel">Unhealthy</small></div><div class="air-box"><span>PM2.5</span><strong id="pm25">38 µg</strong><small>Harmful >35</small></div><div class="air-box"><span>PM10</span><strong id="pm10">89 µg</strong><small>Harmattan Dust</small></div><div class="air-box"><span>O₃</span><strong id="o3">42 µg</strong><small>Ozone</small></div></div>
+  </div>
+  <div class="card"><h4>Personal Triggers — Benue</h4><div id="asthmaTriggers" class="trigger-list"></div><div id="asthmaAlert" class="alert hidden"></div></div>
+  <div class="card"><h4>Action Plan for Benue</h4><ul class="list"><li>If AQI >100: Stay indoors, mask mandatory in Makurdi</li><li>If Humidity <35%: Harmattan trigger — inhaler before going out</li><li>If Temp >35°C: Airway narrows — breathe through nose, hydrate</li></ul><button class="btn emerald w-full mt-3" onclick="testAir()">Refresh Live Air Data</button></div>
+</div>
+
+<div id="tab-water" class="tab-pane hidden">
+  <div class="card center"><h3>Hydration for Benue Heat</h3><div class="big" id="waterDisplay">1200 / 2800 ml</div><div class="progress-line"><div id="waterBar" style="width:42%"></div></div><p class="small">Benue needs 2.8L daily to avoid kidney stones & asthma trigger</p></div>
+  <div class="grid2"><button class="card btn-card" onclick="addWater(250)">🥤 +250ml</button><button class="card btn-card primary-card" onclick="addWater(500)">🍶 +500ml Bottle</button></div>
+</div>
+
+</main>
+
+<script>
+if('serviceWorker' in navigator){navigator.serviceWorker.register('sw.js')}
+</script>
+<script src="script.js"></script>
+</body>
+  </html>
